@@ -17,11 +17,20 @@ def selenium_naturalisation():
     while (not send_notification and time.time() < timeout):
         browser.get(HAUTS_DE_SEINE_GOUV_FR)
 
-        # issue with chrome driver, need to scroll manualy to the location
-        position = browser.find_element_by_id("condition").location
+        # refresh while the page does not load
+        condition_element = None
+        while condition_element is None:
+            try:
+                condition_element = browser.find_element_by_id("condition")
+            except NoSuchElementException:
+                pass
+
+        position = condition_element.location
+
+        # issue with chrome driver, need to scroll manually to the location
         browser.execute_script("window.scrollTo(" + str(position['x']) + ", " + str(position['y']) + ")")
         # click on check box to accept condition
-        browser.find_element_by_id("condition").click()
+        condition_element.click()
 
         # click on next
         browser.find_element_by_name("nextButton").click()
