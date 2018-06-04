@@ -3,6 +3,8 @@ import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
+from win10toast import ToastNotifier
+
 TIME_OUT = 60 * 60 * 2  # time out for trying to get a booking (2 hours)
 SLEEP_TIME = 60 * 60 * 2  # sleep time after reaching the page for booking (2 hours)
 
@@ -49,6 +51,8 @@ def selenium_naturalisation():
             send_notification = True
 
     if send_notification:
+        toaster = ToastNotifier()
+        toaster.show_toast("Selenium naturalisation","Go check chrome!!!", duration=60)
         time.sleep(SLEEP_TIME)  # wait until the user has finished using the browser
 
 

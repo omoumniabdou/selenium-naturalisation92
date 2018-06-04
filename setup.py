@@ -8,6 +8,6 @@ setup(name='selenium-naturalisation92',
       long_description=open("README.md").read(),
       url='https://github.com/othmanemoumni88/selenium-naturalisation92',
       author='Othman Moumni Abdou',
-      install_requires=['selenium>=3.12.0'],
+      install_requires=['selenium>=3.12.0', 'win10toast'],
       license='MIT License'
       )
