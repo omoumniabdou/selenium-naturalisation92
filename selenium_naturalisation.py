@@ -38,7 +38,7 @@ def selenium_naturalisation():
         # check if that there are no booking date
         try:
             form = browser.find_element_by_id("FormBookingCreate")
-            if not form or "Veuillez recommencer" not in form.text:
+            if not form or not("Veuillez recommencer" in form.text or "Please try later" in form.text):
                 # no form? or not the annoying message? send notification
                 send_notification = True
             else:
